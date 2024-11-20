@@ -16,8 +16,9 @@ def home():
 app.route('/sqldemo', methods=['GET','POST'])
 def sqldemo():
     data = users.query.all()
+    print('id','name','email','user_type')
     for i in data:
-        print(i)
+        print(i.id,i.name,i.email,i.user_type)
         return"sql_demo check vs_code terminal for output"
     
 
