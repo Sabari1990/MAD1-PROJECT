@@ -12,6 +12,13 @@ app.app_context().push()
 app.route('/', methods=['GET','POST'])
 def home():
     return rt('home.html')
+
+app.route('/sqldemo', methods=['GET','POST'])
+def sqldemo():
+    data = users.query.all()
+    for i in data:
+        print(i)
+        return"sql_demo check vs_code terminal for output"
     
 
 if __name__ == "__main__":
