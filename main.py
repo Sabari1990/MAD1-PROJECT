@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 app.route('/', methods=['GET','POST'])
 def home():
-    rt('home.html')
+    return rt('home.html')
     
 
 if __name__ == "__main__":
