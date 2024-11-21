@@ -6,7 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    {{ var}}
+    {% for i in var %}
+    <p>{{ i.name}}</p>
+    {% endfor %}
     
 </body>
 </html>
