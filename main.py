@@ -24,7 +24,8 @@ def sqldemo():
     
 @app.route('/datashow', methods=['GET','POST'])
 def datashow():
-    return rt('data.html', var="Saran")
+    data = users.query.filter(users.user_type =='Customer', users.name.like("a%")).all()
+    return rt('data.html', var = data)
 
     
 
