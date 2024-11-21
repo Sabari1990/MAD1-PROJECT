@@ -15,7 +15,8 @@ def home():
 
 @app.route('/sqldemo', methods=['GET','POST'])
 def sqldemo():
-    data = users.query.filter(users.name.like('a%')).all()
+    data = users.query.filter(users.user_type =='Customer', users.name.like("a%")).all()
+    print(data)
     print('id','name','email','user_type')
     for i in data:
         print(i.id,i.name,i.email,i.user_type)
