@@ -13,12 +13,34 @@ app.app_context().push()
 @app.route('/', methods=['GET','POST'])
 def home():
     if request.method == "POST":
-        f_name = request.form['fname']
-        l_name = request.form['lname']
-        print(f_name)
-        print(l_name)
-        return"post"
+        user_email = request.form['EMAIL']
+        user_password = request.form['PASSWORD']
+
+        user = users.query.filter_by(email = user_email).first()
+       
+        if user:
+         if user_password == user.password:
+             print('user exists')
+             print(user.user_type)
+
+        return"user exists,user.user_type"
     return rt('home.html')
+
+@app.route('/admin', methods=['GET','POST'])
+def admin():
+    return rt('admin.html')
+
+@app.route('/Customer', methods=['GET','POST'])
+def Customer():
+    return rt('Customer.html')
+
+@app.route('/theater', methods=['GET','POST'])
+def theater():
+    return rt('theater.html')
+
+
+
+
 
 @app.route('/sqldemo', methods=['GET','POST'])
 def sqldemo():
