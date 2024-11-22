@@ -1,4 +1,4 @@
-from flask import Flask, render_template as rt,request
+from flask import Flask, render_template as rt,request,redirect,url_for
 from model import *
 import os
 current_dir = os.path.abspath(os.path.dirname(__file__))
@@ -20,10 +20,13 @@ def home():
        
         if user:
          if user_password == user.password:
-             print('user exists')
-             print(user.user_type)
-
-        return"user exists,user.user_type"
+             if user.user_type =='admin':
+                 return redirect(url_for('admin'))
+             elif user.user_type == 'Customer':
+                 return redirect(url_for('Customer'))
+             else:
+                 return redirect(url_for(theater))
+       
     return rt('home.html')
 
 @app.route('/admin', methods=['GET','POST'])
