@@ -13,7 +13,10 @@ app.app_context().push()
 @app.route('/', methods=['GET','POST'])
 def home():
     if request.method == "POST":
-        
+        f_name = request.form['fname']
+        l_name = request.form['lname']
+        print(f_name)
+        print(l_name)
         return"post"
     return rt('home.html')
 
