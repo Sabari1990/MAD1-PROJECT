@@ -39,6 +39,15 @@ def home():
 
 @app.route('/userSignUp', methods=['GET','POST'])
 def userSignUp():
+    if request.method == 'POST':
+       Email = request.form['email']
+       Password = request.form['password']
+       Username = request.form['name']
+       UserType = request.form['user_type']
+       newUser =users(name=Username, email=Email, password=Password,user_type=UserType)
+       db.session.add(newUser)
+       db.session.commit()
+       return redirect(url_for("Server_dashboard"))
     return rt('userSignUp.html')
 
 
