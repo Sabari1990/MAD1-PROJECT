@@ -18,7 +18,7 @@ def home():
         Email = request.form['email']
         Password = request.form['password']
 
-        user = users.query.filter_by(email = user_email).first()
+        user = users.query.filter_by(email = Email).first()
        
         if user:
            if Password == user.password:
@@ -47,7 +47,7 @@ def userSignUp():
        newUser =users(name=Username, email=Email, password=Password,user_type=UserType)
        db.session.add(newUser)
        db.session.commit()
-       return redirect(url_for("Server_dashboard"))
+       return redirect(url_for("home"), message ="New User Created")
     return rt('userSignUp.html')
 
 
