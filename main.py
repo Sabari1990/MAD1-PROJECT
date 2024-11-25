@@ -37,8 +37,8 @@ def home():
        
     return rt('home.html')
 
-@app.route('/userSignUp', methods=['GET','POST'])
-def userSignUp():
+@app.route('/signup_customer', methods=['GET','POST'])
+def signup_customer():
     if request.method == 'POST':
        Email = request.form['email']
        Password = request.form['password']
@@ -48,7 +48,21 @@ def userSignUp():
        db.session.add(newUser)
        db.session.commit()
        return redirect(url_for("home"), message ="New User Created")
-    return rt('userSignUp.html')
+    return rt('signup_customer.html')
+
+@app.route('/signup_Service', methods=['GET','POST'])
+def signup():
+    if request.method == 'POST':
+       Email = request.form['email']
+       Password = request.form['password']
+       Username = request.form['name']
+       UserType = request.form['user_type']
+       newUser =users(name=Username, email=Email, password=Password,user_type=UserType)
+       db.session.add(newUser)
+       db.session.commit()
+       return redirect(url_for("home"), message ="New User Created")
+    return rt('signup_Service.html')
+
 
 
 @app.route('/Customer_Dashboard', methods=['GET','POST'])
@@ -80,7 +94,7 @@ def theater():
 
 
 
-@app.route('/sqldemo', methods=['GET','POST'])
+@app.route('/Sqldemo', methods=['GET','POST'])
 def sqldemo():
     data = users.query.filter(users.user_type =='Customer', users.name.like("a%")).all()
 
